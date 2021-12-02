@@ -103,5 +103,27 @@ title: '112'
 
 #### automation for HA
 ```
+alias: p2000 notificatie
+description: ''
+trigger:
+  - platform: state
+    entity_id: sensor.p2000
+condition: []
+action:
+  - service: telegram_bot.send_message
+    data:
+      title: '"P2000 Melding"'
+      message: >-
+        Datum : {{ state_attr('sensor.p2000', 'datum' ) }}   Tijd: {{
+        state_attr('sensor.p2000', 'tijd') }}
+
+        "{{ states.sensor.p2000.attributes.melding}}   
+         {{states.sensor.p2000.attributes.capstring }}   
+         Id nr : {{ state_attr('sensor.p2000', 'id') }}"
+  - service: telegram_bot.send_location
+    data:
+      latitude: '{{ states.sensor.p2000.attributes.latitude }}'
+      longitude: '{{ states.sensor.p2000.attributes.longitude }}'
+mode: single
 
 ```
