@@ -100,3 +100,8 @@ entities:
 hours_to_show: 24
 title: '112'
 ```
+
+#### automation for HA
+```
+
+```
